@@ -1,0 +1,38 @@
+[
+    {
+        "model": "FacebookAI/roberta-base",
+        "type_experiment": "GO",
+        "n_trainable_params": 124647170,
+        "cl_technique": "MERGED_FT",
+        "hyperparams": "",
+        "experiment_name": "_mergedevalita_waseem-racism_ibereval_hateval-immigrant",
+        "time": 0,
+        "dataset_currently_training": "['evalita', 'waseem-racism', 'ibereval', 'hateval-immigrant']",
+        "target_epochs": 8,
+        "best_epochs": 7,
+        "learning_rate": 1e-05,
+        "batch_size": 32,
+        "current_num_samples_training": 23308,
+        "cumulative_samples_trained": 23308,
+        "training_losses": [
+            0.5242653677983539,
+            0.3868326153120713,
+            0.35700392232510286,
+            0.3399696716392318,
+            0.3299756462191358,
+            0.3222997845936214,
+            0.316983614111797,
+            0.31323878493655694
+        ],
+        "validation_losses": [
+            0.4338557545731707,
+            0.3848370807926829,
+            0.36987900152439024,
+            0.36147103658536583,
+            0.3508955792682927,
+            0.34616758765243905,
+            0.33984375,
+            0.35297970655487804
+        ]
+    }
+]

@@ -1,0 +1,38 @@
+[
+    {
+        "model": "FacebookAI/roberta-base",
+        "type_experiment": "GO",
+        "n_trainable_params": 124647170,
+        "cl_technique": "BASIC_FT",
+        "hyperparams": "",
+        "experiment_name": "founta_hateful_57k",
+        "time": 0,
+        "dataset_currently_training": "founta_hateful_57k",
+        "target_epochs": 8,
+        "best_epochs": 8,
+        "learning_rate": 1e-05,
+        "batch_size": 32,
+        "current_num_samples_training": 44048,
+        "cumulative_samples_trained": 44048,
+        "training_losses": [
+            0.21372357536764705,
+            0.1491549401155138,
+            0.14295302358501272,
+            0.13987945800426652,
+            0.13798466435185186,
+            0.13681475736996188,
+            0.13591585180078977,
+            0.13539875947485475
+        ],
+        "validation_losses": [
+            0.13461829876077586,
+            0.12752980199353448,
+            0.12441490436422414,
+            0.12318157327586207,
+            0.12239022090517242,
+            0.12196297481142242,
+            0.12163675242456896,
+            0.12159044989224138
+        ]
+    }
+]

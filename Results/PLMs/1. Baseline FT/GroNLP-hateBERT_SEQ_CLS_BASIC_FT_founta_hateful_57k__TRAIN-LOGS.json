@@ -1,0 +1,38 @@
+[
+    {
+        "model": "GroNLP/hateBERT",
+        "type_experiment": "GO",
+        "n_trainable_params": 109483778,
+        "cl_technique": "BASIC_FT",
+        "hyperparams": "",
+        "experiment_name": "founta_hateful_57k",
+        "time": 0,
+        "dataset_currently_training": "founta_hateful_57k",
+        "target_epochs": 8,
+        "best_epochs": 8,
+        "learning_rate": 1e-05,
+        "batch_size": 32,
+        "current_num_samples_training": 44048,
+        "cumulative_samples_trained": 44048,
+        "training_losses": [
+            0.27937772331154687,
+            0.21060311422022512,
+            0.19606176527323893,
+            0.1912030654275599,
+            0.18914533405954975,
+            0.18804891748366012,
+            0.18740532237200436,
+            0.18699469805283225
+        ],
+        "validation_losses": [
+            0.22145238415948276,
+            0.1924249057112069,
+            0.1837116109913793,
+            0.18081559806034483,
+            0.17932970770474138,
+            0.17867726293103448,
+            0.1781721443965517,
+            0.1778101427801724
+        ]
+    }
+]

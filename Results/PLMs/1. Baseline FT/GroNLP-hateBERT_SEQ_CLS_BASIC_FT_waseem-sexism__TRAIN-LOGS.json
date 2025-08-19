@@ -1,0 +1,38 @@
+[
+    {
+        "model": "GroNLP/hateBERT",
+        "type_experiment": "GO",
+        "n_trainable_params": 109483778,
+        "cl_technique": "BASIC_FT",
+        "hyperparams": "",
+        "experiment_name": "waseem-sexism",
+        "time": 0,
+        "dataset_currently_training": "waseem-sexism",
+        "target_epochs": 8,
+        "best_epochs": 8,
+        "learning_rate": 1e-05,
+        "batch_size": 32,
+        "current_num_samples_training": 11159,
+        "cumulative_samples_trained": 11159,
+        "training_losses": [
+            0.5280768714183381,
+            0.4430068051575931,
+            0.38712448513610315,
+            0.36278037696991405,
+            0.3478996910816619,
+            0.337652780265043,
+            0.3304223003223496,
+            0.3248511371776504
+        ],
+        "validation_losses": [
+            0.48606770833333335,
+            0.418359375,
+            0.39674479166666665,
+            0.3873697916666667,
+            0.3795572916666667,
+            0.37421875,
+            0.3697265625,
+            0.3666015625
+        ]
+    }
+]

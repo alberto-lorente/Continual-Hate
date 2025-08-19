@@ -1,0 +1,38 @@
+[
+    {
+        "model": "GroNLP/hateBERT",
+        "type_experiment": "GO",
+        "n_trainable_params": 109483778,
+        "cl_technique": "MERGED_FT",
+        "hyperparams": "",
+        "experiment_name": "_mergedevalita_waseem-racism_ibereval_hateval-immigrant",
+        "time": 0,
+        "dataset_currently_training": "['evalita', 'waseem-racism', 'ibereval', 'hateval-immigrant']",
+        "target_epochs": 8,
+        "best_epochs": 8,
+        "learning_rate": 1e-05,
+        "batch_size": 32,
+        "current_num_samples_training": 23308,
+        "cumulative_samples_trained": 23308,
+        "training_losses": [
+            0.5990949717078189,
+            0.4929591049382716,
+            0.4358630186899863,
+            0.4175253450788752,
+            0.40952664180384085,
+            0.40499078360768176,
+            0.4020584169238683,
+            0.40002625600137176
+        ],
+        "validation_losses": [
+            0.5597370426829268,
+            0.47027439024390244,
+            0.4464081554878049,
+            0.44173971036585363,
+            0.4294016768292683,
+            0.42944931402439024,
+            0.43245045731707316,
+            0.4286394817073171
+        ]
+    }
+]

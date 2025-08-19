@@ -1,0 +1,38 @@
+[
+    {
+        "model": "GroNLP/hateBERT",
+        "type_experiment": "GO",
+        "n_trainable_params": 109483778,
+        "cl_technique": "MERGED_FT",
+        "hyperparams": "",
+        "experiment_name": "_mergeddavidson_founta_hateful_57k_ibereval_hateval-immigrant_hateval-women_waseem-racism",
+        "time": 0,
+        "dataset_currently_training": "['davidson', 'founta_hateful_57k', 'ibereval', 'hateval-immigrant', 'hateval-women', 'waseem-racism']",
+        "target_epochs": 8,
+        "best_epochs": 8,
+        "learning_rate": 1e-05,
+        "batch_size": 32,
+        "current_num_samples_training": 71350,
+        "cumulative_samples_trained": 71350,
+        "training_losses": [
+            0.37550404638452917,
+            0.3082692509809417,
+            0.299978760860426,
+            0.2969553583940583,
+            0.2954587654147982,
+            0.29457219555773545,
+            0.29394224705717487,
+            0.2935277553951794
+        ],
+        "validation_losses": [
+            0.3796149059734513,
+            0.3655973451327434,
+            0.3626676576327434,
+            0.3601484720685841,
+            0.3592972206858407,
+            0.359115735619469,
+            0.3590638827433628,
+            0.35793176161504425
+        ]
+    }
+]

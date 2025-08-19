@@ -1,0 +1,38 @@
+[
+    {
+        "model": "FacebookAI/roberta-base",
+        "type_experiment": "GO",
+        "n_trainable_params": 124647170,
+        "cl_technique": "BASIC_FT",
+        "hyperparams": "",
+        "experiment_name": "hateval-women",
+        "time": 0,
+        "dataset_currently_training": "hateval-women",
+        "target_epochs": 8,
+        "best_epochs": 8,
+        "learning_rate": 1e-05,
+        "batch_size": 32,
+        "current_num_samples_training": 4500,
+        "cumulative_samples_trained": 4500,
+        "training_losses": [
+            0.7319786125886525,
+            0.7030695921985816,
+            0.7005762411347518,
+            0.698332225177305,
+            0.695811170212766,
+            0.6897163120567376,
+            0.6706560283687943,
+            0.6908660239361702
+        ],
+        "validation_losses": [
+            0.691650390625,
+            0.691162109375,
+            0.690673828125,
+            0.690673828125,
+            0.691162109375,
+            0.701904296875,
+            0.712890625,
+            0.6669921875
+        ]
+    }
+]

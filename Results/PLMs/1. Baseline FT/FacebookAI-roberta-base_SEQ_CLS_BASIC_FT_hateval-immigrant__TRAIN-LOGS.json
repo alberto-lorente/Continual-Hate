@@ -1,0 +1,38 @@
+[
+    {
+        "model": "FacebookAI/roberta-base",
+        "type_experiment": "GO",
+        "n_trainable_params": 124647170,
+        "cl_technique": "BASIC_FT",
+        "hyperparams": "",
+        "experiment_name": "hateval-immigrant",
+        "time": 0,
+        "dataset_currently_training": "hateval-immigrant",
+        "target_epochs": 8,
+        "best_epochs": 8,
+        "learning_rate": 1e-05,
+        "batch_size": 32,
+        "current_num_samples_training": 4500,
+        "cumulative_samples_trained": 4500,
+        "training_losses": [
+            0.6738419769503546,
+            0.5985012189716312,
+            0.4666722074468085,
+            0.3986037234042553,
+            0.36878740026595747,
+            0.3484665890957447,
+            0.3327446254432624,
+            0.31948830895390073
+        ],
+        "validation_losses": [
+            0.655029296875,
+            0.511474609375,
+            0.4140625,
+            0.38916015625,
+            0.3804931640625,
+            0.3758544921875,
+            0.37353515625,
+            0.372314453125
+        ]
+    }
+]

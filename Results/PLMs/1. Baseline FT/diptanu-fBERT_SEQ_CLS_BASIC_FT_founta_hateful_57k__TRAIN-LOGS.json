@@ -1,0 +1,38 @@
+[
+    {
+        "model": "diptanu/fBERT",
+        "type_experiment": "test",
+        "n_trainable_params": 109483778,
+        "cl_technique": "BASIC_FT",
+        "hyperparams": "",
+        "experiment_name": "founta_hateful_57k",
+        "time": 0,
+        "dataset_currently_training": "founta_hateful_57k",
+        "target_epochs": 8,
+        "best_epochs": 8,
+        "learning_rate": 1e-05,
+        "batch_size": 32,
+        "current_num_samples_training": 44048,
+        "cumulative_samples_trained": 44048,
+        "training_losses": [
+            0.69921875,
+            0.69140625,
+            0.6796875,
+            0.671875,
+            0.66015625,
+            0.65234375,
+            0.640625,
+            0.6328125
+        ],
+        "validation_losses": [
+            0.68359375,
+            0.671875,
+            0.6640625,
+            0.65625,
+            0.6484375,
+            0.640625,
+            0.6328125,
+            0.625
+        ]
+    }
+]

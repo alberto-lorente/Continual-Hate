@@ -1,0 +1,38 @@
+[
+    {
+        "model": "diptanu/fBERT",
+        "type_experiment": "GO",
+        "n_trainable_params": 109483778,
+        "cl_technique": "MERGED_FT",
+        "hyperparams": "",
+        "experiment_name": "_mergedhateval-immigrant_waseem-racism_ibereval",
+        "time": 0,
+        "dataset_currently_training": "['hateval-immigrant', 'waseem-racism', 'ibereval']",
+        "target_epochs": 8,
+        "best_epochs": 8,
+        "learning_rate": 1e-05,
+        "batch_size": 32,
+        "current_num_samples_training": 18509,
+        "cumulative_samples_trained": 18509,
+        "training_losses": [
+            0.5046281303972366,
+            0.4061690414507772,
+            0.38054734725820377,
+            0.36907821945164077,
+            0.3625526230569948,
+            0.3584001241364421,
+            0.3559005289291883,
+            0.35409414129965455
+        ],
+        "validation_losses": [
+            0.46530330882352944,
+            0.42204733455882354,
+            0.40567555147058826,
+            0.3986672794117647,
+            0.39303768382352944,
+            0.39128561580882354,
+            0.3886144301470588,
+            0.38766659007352944
+        ]
+    }
+]

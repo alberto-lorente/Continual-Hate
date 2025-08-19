@@ -1,0 +1,38 @@
+[
+    {
+        "model": "diptanu/fBERT",
+        "type_experiment": "test",
+        "n_trainable_params": 109483778,
+        "cl_technique": "BASIC_FT",
+        "hyperparams": "",
+        "experiment_name": "evalita",
+        "time": 0,
+        "dataset_currently_training": "evalita",
+        "target_epochs": 8,
+        "best_epochs": 8,
+        "learning_rate": 1e-05,
+        "batch_size": 32,
+        "current_num_samples_training": 4799,
+        "cumulative_samples_trained": 4799,
+        "training_losses": [
+            0.703125,
+            0.69921875,
+            0.6953125,
+            0.69140625,
+            0.6875,
+            0.68359375,
+            0.6796875,
+            0.671875
+        ],
+        "validation_losses": [
+            0.671875,
+            0.671875,
+            0.671875,
+            0.671875,
+            0.66796875,
+            0.66796875,
+            0.66796875,
+            0.66796875
+        ]
+    }
+]

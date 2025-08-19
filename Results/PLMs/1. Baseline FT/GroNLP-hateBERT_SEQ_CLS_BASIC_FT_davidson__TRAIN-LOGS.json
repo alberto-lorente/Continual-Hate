@@ -1,0 +1,38 @@
+[
+    {
+        "model": "GroNLP/hateBERT",
+        "type_experiment": "GO",
+        "n_trainable_params": 109483778,
+        "cl_technique": "BASIC_FT",
+        "hyperparams": "",
+        "experiment_name": "davidson",
+        "time": 0,
+        "dataset_currently_training": "davidson",
+        "target_epochs": 8,
+        "best_epochs": 8,
+        "learning_rate": 1e-05,
+        "batch_size": 32,
+        "current_num_samples_training": 4293,
+        "cumulative_samples_trained": 4293,
+        "training_losses": [
+            0.6409722222222223,
+            0.5391203703703704,
+            0.47272858796296297,
+            0.3908347800925926,
+            0.3293113425925926,
+            0.29488570601851855,
+            0.2739872685185185,
+            0.25958116319444446
+        ],
+        "validation_losses": [
+            0.5680338541666666,
+            0.5091145833333334,
+            0.4342447916666667,
+            0.3580729166666667,
+            0.3126627604166667,
+            0.2877604166666667,
+            0.2716471354166667,
+            0.2607421875
+        ]
+    }
+]

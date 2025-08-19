@@ -1,0 +1,38 @@
+[
+    {
+        "model": "diptanu/fBERT",
+        "type_experiment": "test",
+        "n_trainable_params": 109483778,
+        "cl_technique": "BASIC_FT",
+        "hyperparams": "",
+        "experiment_name": "hateval-immigrant",
+        "time": 0,
+        "dataset_currently_training": "hateval-immigrant",
+        "target_epochs": 8,
+        "best_epochs": 8,
+        "learning_rate": 1e-05,
+        "batch_size": 32,
+        "current_num_samples_training": 4500,
+        "cumulative_samples_trained": 4500,
+        "training_losses": [
+            0.70703125,
+            0.69921875,
+            0.6953125,
+            0.69140625,
+            0.6875,
+            0.68359375,
+            0.6796875,
+            0.67578125
+        ],
+        "validation_losses": [
+            0.70703125,
+            0.703125,
+            0.703125,
+            0.69921875,
+            0.6953125,
+            0.6953125,
+            0.69140625,
+            0.69140625
+        ]
+    }
+]

@@ -1,0 +1,38 @@
+[
+    {
+        "model": "diptanu/fBERT",
+        "type_experiment": "GO",
+        "n_trainable_params": 109483778,
+        "cl_technique": "MERGED_FT",
+        "hyperparams": "",
+        "experiment_name": "_mergeddavidson_founta_hateful_57k_ibereval_hateval-immigrant_hateval-women_waseem-racism",
+        "time": 0,
+        "dataset_currently_training": "['davidson', 'founta_hateful_57k', 'ibereval', 'hateval-immigrant', 'hateval-women', 'waseem-racism']",
+        "target_epochs": 8,
+        "best_epochs": 8,
+        "learning_rate": 1e-05,
+        "batch_size": 32,
+        "current_num_samples_training": 71350,
+        "cumulative_samples_trained": 71350,
+        "training_losses": [
+            0.3073520266956278,
+            0.2755123668721973,
+            0.27120038361827353,
+            0.26956869219450674,
+            0.2687514232413117,
+            0.2682501138593049,
+            0.26795692614910316,
+            0.267737309066704
+        ],
+        "validation_losses": [
+            0.34648956028761063,
+            0.33783445105088494,
+            0.33507760647123896,
+            0.3342609236725664,
+            0.33478809457964603,
+            0.33384610066371684,
+            0.3341053650442478,
+            0.3329559596238938
+        ]
+    }
+]

@@ -1,0 +1,38 @@
+[
+    {
+        "model": "GroNLP/hateBERT",
+        "type_experiment": "GO",
+        "n_trainable_params": 109483778,
+        "cl_technique": "BASIC_FT",
+        "hyperparams": "",
+        "experiment_name": "ibereval",
+        "time": 0,
+        "dataset_currently_training": "ibereval",
+        "target_epochs": 8,
+        "best_epochs": 8,
+        "learning_rate": 1e-05,
+        "batch_size": 32,
+        "current_num_samples_training": 3817,
+        "cumulative_samples_trained": 3817,
+        "training_losses": [
+            0.7032877604166666,
+            0.673046875,
+            0.65654296875,
+            0.6357421875,
+            0.6078125,
+            0.5762369791666667,
+            0.5451171875,
+            0.5176595052083334
+        ],
+        "validation_losses": [
+            0.68203125,
+            0.6671875,
+            0.65234375,
+            0.634375,
+            0.61015625,
+            0.58359375,
+            0.557421875,
+            0.533984375
+        ]
+    }
+]

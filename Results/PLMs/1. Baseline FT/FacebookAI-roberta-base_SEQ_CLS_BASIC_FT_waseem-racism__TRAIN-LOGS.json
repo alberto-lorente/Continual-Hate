@@ -1,0 +1,38 @@
+[
+    {
+        "model": "FacebookAI/roberta-base",
+        "type_experiment": "GO",
+        "n_trainable_params": 124647170,
+        "cl_technique": "BASIC_FT",
+        "hyperparams": "",
+        "experiment_name": "waseem-racism",
+        "time": 0,
+        "dataset_currently_training": "waseem-racism",
+        "target_epochs": 8,
+        "best_epochs": 8,
+        "learning_rate": 1e-05,
+        "batch_size": 32,
+        "current_num_samples_training": 10192,
+        "cumulative_samples_trained": 10192,
+        "training_losses": [
+            0.4143548564851097,
+            0.21363682283503135,
+            0.17453758694161442,
+            0.16187518367946707,
+            0.15437876542907525,
+            0.14905320888028997,
+            0.14483814777625392,
+            0.14133178328271945
+        ],
+        "validation_losses": [
+            0.24372209821428573,
+            0.19573102678571427,
+            0.17844935825892858,
+            0.1748046875,
+            0.17173549107142858,
+            0.17079380580357142,
+            0.17006138392857142,
+            0.16966029575892858
+        ]
+    }
+]

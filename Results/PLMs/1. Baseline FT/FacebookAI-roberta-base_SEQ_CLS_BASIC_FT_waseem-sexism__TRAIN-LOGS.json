@@ -1,0 +1,38 @@
+[
+    {
+        "model": "FacebookAI/roberta-base",
+        "type_experiment": "GO",
+        "n_trainable_params": 124647170,
+        "cl_technique": "BASIC_FT",
+        "hyperparams": "",
+        "experiment_name": "waseem-sexism",
+        "time": 0,
+        "dataset_currently_training": "waseem-sexism",
+        "target_epochs": 8,
+        "best_epochs": 8,
+        "learning_rate": 1e-05,
+        "batch_size": 32,
+        "current_num_samples_training": 11159,
+        "cumulative_samples_trained": 11159,
+        "training_losses": [
+            0.5293220585601719,
+            0.3574358658667622,
+            0.3045391968123209,
+            0.27838606957378226,
+            0.26065404503939826,
+            0.24844561470272206,
+            0.23958519878223497,
+            0.2328318073961318
+        ],
+        "validation_losses": [
+            0.434765625,
+            0.36282552083333336,
+            0.32903645833333334,
+            0.30638020833333335,
+            0.29173177083333335,
+            0.2815755208333333,
+            0.27470703125,
+            0.2705078125
+        ]
+    }
+]

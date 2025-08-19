@@ -1,0 +1,38 @@
+[
+    {
+        "model": "GroNLP/hateBERT",
+        "type_experiment": "GO",
+        "n_trainable_params": 109483778,
+        "cl_technique": "BASIC_FT",
+        "hyperparams": "",
+        "experiment_name": "hateval-women",
+        "time": 0,
+        "dataset_currently_training": "hateval-women",
+        "target_epochs": 8,
+        "best_epochs": 8,
+        "learning_rate": 1e-05,
+        "batch_size": 32,
+        "current_num_samples_training": 4500,
+        "cumulative_samples_trained": 4500,
+        "training_losses": [
+            0.7301363031914894,
+            0.6892453457446809,
+            0.6770140735815603,
+            0.6567348182624113,
+            0.6308870789007093,
+            0.6026013962765957,
+            0.5731798537234043,
+            0.5446586879432624
+        ],
+        "validation_losses": [
+            0.693115234375,
+            0.68505859375,
+            0.67431640625,
+            0.66064453125,
+            0.645263671875,
+            0.630859375,
+            0.619384765625,
+            0.60986328125
+        ]
+    }
+]

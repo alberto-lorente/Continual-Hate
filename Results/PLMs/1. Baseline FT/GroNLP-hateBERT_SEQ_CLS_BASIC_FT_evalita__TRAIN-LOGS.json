@@ -1,0 +1,38 @@
+[
+    {
+        "model": "GroNLP/hateBERT",
+        "type_experiment": "GO",
+        "n_trainable_params": 109483778,
+        "cl_technique": "BASIC_FT",
+        "hyperparams": "",
+        "experiment_name": "evalita",
+        "time": 0,
+        "dataset_currently_training": "evalita",
+        "target_epochs": 8,
+        "best_epochs": 8,
+        "learning_rate": 1e-05,
+        "batch_size": 32,
+        "current_num_samples_training": 4799,
+        "cumulative_samples_trained": 4799,
+        "training_losses": [
+            0.7157552083333333,
+            0.6762760416666667,
+            0.6546614583333333,
+            0.628046875,
+            0.5903385416666667,
+            0.5528125,
+            0.5225651041666667,
+            0.4994140625
+        ],
+        "validation_losses": [
+            0.6869419642857143,
+            0.6646205357142857,
+            0.6417410714285714,
+            0.609375,
+            0.5719866071428571,
+            0.5460379464285714,
+            0.5226004464285714,
+            0.5061383928571429
+        ]
+    }
+]

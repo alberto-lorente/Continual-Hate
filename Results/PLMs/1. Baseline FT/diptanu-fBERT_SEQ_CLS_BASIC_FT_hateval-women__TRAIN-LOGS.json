@@ -1,0 +1,38 @@
+[
+    {
+        "model": "diptanu/fBERT",
+        "type_experiment": "test",
+        "n_trainable_params": 109483778,
+        "cl_technique": "BASIC_FT",
+        "hyperparams": "",
+        "experiment_name": "hateval-women",
+        "time": 0,
+        "dataset_currently_training": "hateval-women",
+        "target_epochs": 8,
+        "best_epochs": 8,
+        "learning_rate": 1e-05,
+        "batch_size": 32,
+        "current_num_samples_training": 4500,
+        "cumulative_samples_trained": 4500,
+        "training_losses": [
+            0.65625,
+            0.6484375,
+            0.640625,
+            0.6328125,
+            0.625,
+            0.6171875,
+            0.609375,
+            0.6015625
+        ],
+        "validation_losses": [
+            0.7109375,
+            0.7109375,
+            0.7109375,
+            0.7109375,
+            0.7109375,
+            0.7109375,
+            0.7109375,
+            0.7109375
+        ]
+    }
+]

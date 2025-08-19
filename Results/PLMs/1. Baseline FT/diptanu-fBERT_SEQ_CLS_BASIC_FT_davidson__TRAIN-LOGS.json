@@ -1,0 +1,38 @@
+[
+    {
+        "model": "diptanu/fBERT",
+        "type_experiment": "test",
+        "n_trainable_params": 109483778,
+        "cl_technique": "BASIC_FT",
+        "hyperparams": "",
+        "experiment_name": "davidson",
+        "time": 0,
+        "dataset_currently_training": "davidson",
+        "target_epochs": 8,
+        "best_epochs": 8,
+        "learning_rate": 1e-05,
+        "batch_size": 32,
+        "current_num_samples_training": 4293,
+        "cumulative_samples_trained": 4293,
+        "training_losses": [
+            0.69921875,
+            0.69140625,
+            0.68359375,
+            0.6796875,
+            0.671875,
+            0.6640625,
+            0.66015625,
+            0.65234375
+        ],
+        "validation_losses": [
+            0.6875,
+            0.68359375,
+            0.6796875,
+            0.671875,
+            0.66796875,
+            0.66015625,
+            0.65625,
+            0.6484375
+        ]
+    }
+]
