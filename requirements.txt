@@ -1,0 +1,15 @@
+huggingface_hub
+numpy
+pandas
+peft
+python-dotenv
+scikit_learn
+torch==2.6.0+cu118
+tqdm
+transformers==4.54.1
+datasets
+pprintpp
+pipetools
+emoji
+hf-xet
+ipython

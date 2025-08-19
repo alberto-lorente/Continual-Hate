@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "continual_hate"
+version = "0.1.0"
+description = "Implementation of Continual Learning Algorithms for Hate Speech Detection."
+authors = [{name = "Alberto Lorente Galé", email = "albertolorente97@gmail.com"}]
+keywords = ["Continual Learning", "Hate Speech Detection", "Continual Hate Speech Detection"]
+readme = "README.md"
+
+requires-python = ">=3.11"
+dependencies = [
+    "numpy",
+    "scikit-learn",
+    "peft",
+    "transformers",
+    "pprintpp",
+    "huggingface_hub",
+    "pandas",
+    "tqdm",
+    "python-dotenv",
+    "hf-xet",
+    "protobuf",
+    "sentencepiece",
+    "bitsandbytes"
+]
+
+[project.urls]
+Repository = "https://github.com/alberto-lorente/Continual_Hate.git"
+
+[tool.setuptools]
+py-modules = ['continual_hate']
+
