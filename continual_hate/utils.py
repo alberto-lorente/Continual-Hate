@@ -241,8 +241,8 @@ def clean_up_df(df, mappings=clean_up_mappings):
     return df
 
 def translate_label_to_int(label):
-    
-    if re.search(r"not\b", label, re.IGNORECASE):
+
+    if re.search(r"not\b", label, re.IGNORECASE) and not re.search(r"hateful", label, re.IGNORECASE):
         # print("LABEL")
         # print(label)
         # print()

@@ -89,9 +89,11 @@ class Trainer():
         self.model.eval()
 
         prompts_fed = []
+        sentences = []
         generations = []
         unfiltered_outputs = []
         verbalized_labels = []
+        
         y_preds = []
         targets = []
 
@@ -178,6 +180,10 @@ class Trainer():
                         targets.extend(labels_int)
                     
                 elif self.objective == "SEQ_CLS":
+                    
+                    sents_decoded = tokenizer.batch_decode(batch["input_ids"], skip_special_tokens=True)
+                    sentences.extend(sents_decoded)
+
                     labels = [int(label) for label in labels]
                     outputs = self.model(**test_batch)
                     pred = outputs.logits.argmax(dim=-1) # the last dimension -> will get the max of each pair fo 2 logits
@@ -191,6 +197,8 @@ class Trainer():
         # assert type(generations[0]) == str
 
         test_results = get_metrics(targets, y_preds)
+        
+        test_results["sentences_classified"] = sentences   
         test_results["generations"] = generations
         test_results["unfiltered_outputs"] = unfiltered_outputs
         test_results["verbalized_labels"] = verbalized_labels
@@ -393,12 +401,18 @@ class Trainer():
                                         "current_num_samples_training": int(datastream.datastream_samples_per_time[t]),
                                         "cumulative_samples_trained": int(datastream.datastream_cumulative_samples[t])}
                 
+                
                 if hasattr(self, "early_stopper"):
                     info_training_time_t["best_epochs"] = int(self.early_stopper.best_epoch),
                 
-
                 info_training_time_t.update({"training_losses": list(training_losses), "validation_losses": list(validation_losses)})
                 self.train_logs.append(info_training_time_t)
+                
+                print("PUSHING MODEL TO THE HUB")
+                trained_model_name = experiment_name.replace("FacebookAI-roberta-base", "roberta").replace("racism", "").replace("immigrant", "").replace(".", "").replace("-", "").replace("=", "").replace("founta_hateful_57k", "founta").replace("women", "").replace("sexism", "").replace("_mem_size_proportion0025NO-ES", "").replace("_mem_size_proportion0025NOES", "").replace("iberevalTOhatevalTOhatevalTOwaseem", "long_exp")
+                model_hub_id = f"alberto-lorente/{trained_model_name}" + f"_TIME_{str(t)}"
+                self.model.model.push_to_hub(model_hub_id)
+
 
             print(f"Training completed at time {t}")
             pp(info_training_time_t)
