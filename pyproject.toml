@@ -33,3 +33,6 @@ Repository = "https://github.com/alberto-lorente/Continual_Hate.git"
 [tool.setuptools]
 py-modules = ['continual_hate']
 
+[options]
+install_requires =
+    -r requirements.txt
