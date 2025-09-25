@@ -24,6 +24,9 @@ from .constants import translation_dict_from_label_to_int, translation_dict_from
 
 
 def set_seed(seed):
+    """
+    Sets a seed for reproducibility.
+    """
     random.seed(seed)
     torch.manual_seed(seed)
     np.random.seed(seed)
@@ -33,8 +36,15 @@ def set_seed(seed):
 set_seed(42)
 
 class DistTrainingConfig():
+    """
+    Distributed training configuration. NOT TESTED
+    """
 
     def __init__(self, distributed_training:bool=False, time_out=1000000000000):
+        
+        """
+        Initializes the distributed training configuration if the distributed_training flag is set to True. Else, it gets the device to be used.
+        """
 
         self.distributed_training = distributed_training
         
@@ -82,9 +92,15 @@ class DistTrainingConfig():
         return print("Distributed training destroyed")
 
 class EarlyStopperAndCheckpointer():
-
+    """
+    Class used for early stopping and model checkpointing.
+    """
     def __init__(self, patience=4, min_epochs=0, delta=0):
-
+        """
+        patience: number of epochs the training loop will wait for the loss to decrease before stopping.
+        min_epochs: minimum number of epochs to train the model.
+        delta: minimum improvement threshold for the loss. If the loss does not improve by at least delta, the patience will reduce.
+        """
         self.patience = patience
         self.min_epochs = min_epochs
 
@@ -97,14 +113,16 @@ class EarlyStopperAndCheckpointer():
         self.best_model = None
 
     def stop_training(self, val_loss, epoch, model):
-
+        """
+        Determines if the training loop should stop..
+        """
         stop = False
 
         if val_loss <= self.best_loss - self.delta:
             self.best_loss = val_loss
             self.counter = 0
             self.best_epoch = epoch
-            self.best_model = deepcopy(model)
+            self.best_model = deepcopy(model) # save model until the loss no longer decreases
 
         else:
             self.counter += 1
@@ -124,65 +142,72 @@ class EarlyStopperAndCheckpointer():
         return stop
 
     def reset_stopper(self):
+        """
+        Resets the early stopper
+        """
         self.counter = 0
         self.best_loss = float("inf")
         self.best_epoch = None
         self.best_model = None
 
 def log_hf():
-    
+    """
+    Log into huggingface. Expects a env_vars.env file with the field HF_ACCESS_TOKEN, which should be your API key.
+    """
     load_dotenv("env_vars.env")
     hf_token = os.environ.get("HF_ACCESS_TOKEN")
     HfFolder.save_token(hf_token)
     return print(whoami()["name"])
 
-def set_seed(seed):
-    random.seed(seed)
-    torch.manual_seed(seed)
-    np.random.seed(seed)
-    torch.cuda.manual_seed(seed)
-    torch.cuda.manual_seed_all(seed)
 
 def clean_cl_name(cl_name):
-
+    """
+    Util to clean the class name of cl techniques.
+    """
     regex = r'<(?:[\w\.]+)?\.([\w]+) object at'
     matches =   re.findall(regex, cl_name)
     clean_string = " + ".join(matches)
     return clean_string
 
 def clean_metric_name(metric_name):
-
+    """
+    Util to clean the class name of sk learn metrics.
+    """
     reg = r"\s([a-z_1]+)\s"
     match_ = re.search(reg, metric_name)
     clean_str = match_.group().strip()
 
     return clean_str
 
-def translate_prediction_to_label(text):
-    if "NOT HATEFUL" in text:
-        text_clean = text.replace("NOT HATEFUL", "")
-        if "HATEFUL" in text_clean or "HATEFUAL" in text_clean:
-            return 2
-        else:
-            return 0
-    elif "NOT_HATEFUL" in text:
-        text_clean = text.replace("NOT_HATEFUL", "")
-        if "HATEFUL" in text_clean or "HATEFUAL" in text_clean:
-            return 2
-        else: 
-            return 0
-    elif "HATEFUL" in text:
-        text_clean = text.replace("HATEFUL", "")
-        if "NOT_HATEFUL" in text_clean or "NOT HATEFUL" in text_clean:
-            return 2
-        else:
-            return 1
-    else:
-        return 2
+# def translate_prediction_to_label(text):
+#     """
+#     DEPRECATED
+#     """
+#     if "NOT HATEFUL" in text:
+#         text_clean = text.replace("NOT HATEFUL", "")
+#         if "HATEFUL" in text_clean or "HATEFUAL" in text_clean:
+#             return 2
+#         else:
+#             return 0
+#     elif "NOT_HATEFUL" in text:
+#         text_clean = text.replace("NOT_HATEFUL", "")
+#         if "HATEFUL" in text_clean or "HATEFUAL" in text_clean:
+#             return 2
+#         else: 
+#             return 0
+#     elif "HATEFUL" in text:
+#         text_clean = text.replace("HATEFUL", "")
+#         if "NOT_HATEFUL" in text_clean or "NOT HATEFUL" in text_clean:
+#             return 2
+#         else:
+#             return 1
+#     else:
+#         return 2
 
 def transform_original_label(label:str|int, 
                             translation_dict:Dict[bool, str|int]=translation_dict_from_label_to_int,
                             int2label:Dict[int, str]=int2label):
+    
     if type(label) == int: #already translated to int - useful for the domain transfer experiments that are already in hateful/not hateful
         return int2label[label]
 
@@ -192,10 +217,16 @@ def transform_original_label(label:str|int,
     return translation_label
 
 def squeeze_notneeded_dimension(x):
+    """
+    Unfold [batch_size x 1 x embedding_dim] type of tensors with an unneeded dimension in the middle. If we don't apply it, some models will return an error
+    """
     x = x.squeeze(1) if x.dim() == 3 and x.size(1) == 1 else x
     return x
 
 def translate_llama_guard_labels(label):
+    """
+    Parse Llama Guard outputs to numerical labels.
+    """
     if label == "\n\nsafe":
         # print("found safe label")
         return 0
@@ -208,6 +239,7 @@ def translate_llama_guard_labels(label):
 
 
 def filter_few_shots_df(few_shot_df:pd.DataFrame, dataset:str, k:int, iteration:int):
+    
     few_shot_df = few_shot_df[few_shot_df['source'] == dataset]
     few_shot_df = few_shot_df[few_shot_df['shots'] == k]
     few_shot_df = few_shot_df[few_shot_df['iteration'] == iteration]
@@ -233,7 +265,10 @@ Example LABEL: {}
 
     return formatted_shots_string
 
-def clean_up_df(df, mappings=clean_up_mappings):
+def clean_up_df(df, mappings:list=clean_up_mappings):
+    """
+    Util to clean up the dataframe by applying a list of mapping dictionaries.
+    """
     for mapping in mappings:
         df.replace(mapping, inplace=True)
         df.rename(columns=mapping, inplace=True)
@@ -241,7 +276,9 @@ def clean_up_df(df, mappings=clean_up_mappings):
     return df
 
 def translate_label_to_int(label):
-
+    """
+    Parse labels to numerical labels.
+    """
     if re.search(r"not\b", label, re.IGNORECASE) and not re.search(r"hateful", label, re.IGNORECASE):
         # print("LABEL")
         # print(label)
@@ -258,9 +295,3 @@ def translate_label_to_int(label):
     
     else:
         return 2
-
-def log_hf():
-    load_dotenv("env_vars.env")
-    hf_token = os.environ.get("HF_ACCESS_TOKEN")
-    HfFolder.save_token(hf_token)
-    return print(whoami()["name"])

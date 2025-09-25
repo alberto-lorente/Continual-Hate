@@ -17,7 +17,12 @@ set_seed(42)
 class CLTechniques():
 
     def __init__(self, model, device, technique="none", hyperparams:dict=cl_hyperparameters):
-
+        """
+        Initializes the CL technique passed.
+        The Hyperparams Dictionary should be {cl_technique: {hyperparam_name: hyperparam_value}}.
+        Since in the experiments.py we are using a list of cl techniques to run the experiments sequentially, 
+        I would recommend using a dictionary for all the CL Techniques for simplicity.
+        """
         self.model = model
         self.device = device
         self.technique = technique.lower()
@@ -38,7 +43,9 @@ class CLTechniques():
             self._init_mas(**self.hyperparams[self.technique])
 
     def _init_ewc(self, ewc_lambda):
-
+        """
+        ewc_lambda: scales the penalty applied to each parameter.
+        """
         self.ewc_lambda = ewc_lambda
 
         # store the parameters
@@ -57,7 +64,9 @@ class CLTechniques():
 
 
     def _init_agem(self, mem_size_proportion):
-
+        """
+        mem_size_proportion: the % of samples for the current task that will be saved in the memory buffer. 
+        """
         self.mem_size_proportion = mem_size_proportion
         self.mem_size = None
         self.memory = []
@@ -68,17 +77,23 @@ class CLTechniques():
 
 
     def _init_lwf(self, lwf_lambda, temperature):
-
+        """
+        lwf_lambda: scales the distilation loss.
+        temperature: applied to the softmax outputs of the teacher and student models.
+        """
         self.lwf_lambda = lwf_lambda
         self.temperature = temperature
         self.old_model = None
 
         print("-LwF initialized-")
-        print("-LwF Lambda: ", self.lwf_lambda)
-        print("-LwF Temperature: ", self.temperature)
+        print("-LwF Lambda: -", self.lwf_lambda)
+        print("-LwF Temperature: -", self.temperature)
 
     def _init_mas(self, mas_lambda, mas_variation):
-
+        """
+        mas_lambda: scales the penalty applied to each parameter.
+        mas_variation: "global" or "local", have not used it (local is  not tested).
+        """
         self.mas_lambda = mas_lambda
         self.mas_variation = mas_variation
 
@@ -86,25 +101,32 @@ class CLTechniques():
         self.importance = {n: torch.zeros_like(p, device=self.device)
                         for n, p in self.model.named_parameters()
                         if p.requires_grad}
+        
         # old importances
         self.old_params = {n: p.detach().clone().to(self.device)
                     for n, p in self.model.named_parameters()
                     if p.requires_grad}
 
         print("-MAS initialized-")
-        print("-MAS Lambda: ", self.mas_lambda)
+        print("-MAS Lambda: -", self.mas_lambda)
         print("-MAS IMPORTANCE and OLD PARAMS initialized-")
 
     def set_memory_size(self, num_training_samples):
-
+        """
+        Set the memory size as the proportion of the number of training samples we are storing x the number of training samples in the dataset. 
+        """
         if self.technique == "agem":
             self.mem_size = int(self.mem_size_proportion * num_training_samples)
             print("-AGEM- Setting the Memory size for")
             print("-AGEM- Memory size: ", self.mem_size)
 
     def compute_regularization(self, inputs=None, mode="train"): # in case i restric it for testing purposes
-
-        gc.collect()
+        """
+        Will compute regularization for EWC, LwF and MAS. 
+        EWC and MAS regularization are applied per parameter while LwF calculates a "global" distillation loss.
+        The input passed should have a "logits" key with the logits and is only used for LwF reg.
+        """
+        # gc.collect()
 
         if self.technique == "ewc":
 
@@ -167,7 +189,6 @@ class CLTechniques():
             print("-MAS- Computing Regularization with IMPORTANCE AND OLD PARAMS")
             print("-MAS- Adjusting the penalty")
 
-
             penalty = 0
 
             for n, p in self.model.named_parameters():
@@ -192,7 +213,10 @@ class CLTechniques():
         return 0
 
     def pre_backward(self, inputs=None, mode="train"):
-
+        """
+        Computes the reference gradients for AGEM.
+        None of the other CL Techniques implemented apply a pre-backward step.
+        """
         # the reference gradients are computed for each training step
         if self.technique == "agem" and self.memory: # will skip at time 0
 
@@ -232,7 +256,11 @@ class CLTechniques():
 
     def post_backward(self, mode="train"):
 
-        gc.collect()
+        """
+        Computes the gradient projection for A-GEM.
+        None of the other CL Techniques implemented apply a pre-backward step.
+        """
+        # gc.collect()
 
         # after the backward passes of the current task's data and the data in memory, we perform the gradient projection
         if self.technique == "agem" and hasattr(self, 'ref_grad'): 
@@ -260,9 +288,15 @@ class CLTechniques():
             gc.collect()
 
     def post_task_update(self, dataloader=None, mode="train"):
-
-        # update the fisher matrix using the current task's data and save the parameters for reference for the future task
+        """
+        Performs the post task update for EWC, AGEM, LwF and MAS.
+        EWC: computes the fisher matrix using the current task's data and saves the parameters for reference for the future task.
+        A-GEM: updates the memory by resetting and discarding all the samples of the just-ended task and fills it with the current task's data.
+        LwF: saves a copy of the model.
+        MAS: computes the param importance and saves the old parameters for reference for the future task.
+        """
         if self.technique == "ewc":
+            # update the fisher matrix using the current task's data and save the parameters for reference for the future task
 
             print("-EWC- Updating the FISHER MATRIX AND PARAMS")
 
@@ -285,7 +319,7 @@ class CLTechniques():
                 logits = outputs.logits
 
                 log_probs = F.log_softmax(logits, dim=1)
-                # taking the log prob of just the correct classes
+                # taking the log prob of just the correct classes as the original code provided by the authors
                 correct_log_probs = log_probs[torch.arange(len(labels)), labels]
                 loss = -correct_log_probs.mean()
                 loss.backward()

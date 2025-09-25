@@ -39,11 +39,12 @@ class AutoContinualLearner(nn.Module):
         self.cl = None # will only change if there is a cl technique init, if there is no cl technique it will stay None
 
         if self.cl_technique in self.cl_hyperparams.keys():
+            # used for logging
             self.hyperparam_str = "_".join([str(k) + "=" + str(v) for k, v in self.cl_hyperparams[self.cl_technique].items()])
         else: 
             self.hyperparam_str = ""
 
-        self.objective = objective
+        self.objective = objective 
         self.generation_config = generation_config
         self.quantization_config = quantization_config
         self.lora_config = lora_config
@@ -52,6 +53,7 @@ class AutoContinualLearner(nn.Module):
         self.distributed_config = distributed_config_object
 
         if self.objective == "CAUSAL_LM":
+            
             if self.quantization_config:
                 self.model = AutoModelForCausalLM.from_pretrained(self.model_id, quantization_config=self.quantization_config, torch_dtype=torch_dtype)
             else: 
@@ -71,17 +73,18 @@ class AutoContinualLearner(nn.Module):
 
         if "guard" in str(self.model_id).lower():
             print("Guard detected, overriding the generation config and setting do_sample to False")
-            self.generation_config = {"do_sample": False} # in case i try other generation strategies
+            self.generation_config = {"do_sample": False} # in case i try other generation strategies. 
 
     def init_LORA_model(self):
 
+        # freeze the model
         for param in self.model.parameters():
             param.requires_grad = False
             
         self.model = get_peft_model(self.model, self.lora_config).to(self.device)
-        self.model_lora_rank = self.lora_config.to_dict()["r"]
+        self.model_lora_rank = self.lora_config.to_dict()["r"] # for logging
         self.n_trainable_params = sum(t.numel() for t in self.model.parameters() if t.requires_grad)
-        self.model.print_trainable_parameters()
+        # self.model.print_trainable_parameters()
 
     def init_CL_model(self):
 
