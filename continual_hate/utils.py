@@ -37,7 +37,7 @@ set_seed(42)
 
 class DistTrainingConfig():
     """
-    Distributed training configuration. NOT TESTED
+    Distributed training configuration. NOT TESTED!!!!
     """
 
     def __init__(self, distributed_training:bool=False, time_out=1000000000000):

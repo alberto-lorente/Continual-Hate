@@ -29,6 +29,9 @@ def setup_continual_experiment(df:pd.DataFrame,
                                 dist_training_config:DistTrainingConfig,
                                 batch_size:int=16,
                                 **few_shot_args) -> DataStream:
+    """
+    Helper function to setup a continual learning experiment with all the necessary components.
+    """
     
     print("Starting Experiment SETUP")
     print("Datasets part of the datastream: ", tasks)
@@ -338,7 +341,9 @@ def zero_shot_test(df_path,
                                                 processing_config=processing_config_causal_lm)
         return test_results
 
-
+######
+# Some common experiments
+######
 def fine_tune_LLM_LoRA(df_path, 
                         task:list,
                         zero_shot_tasks,

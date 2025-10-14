@@ -11,7 +11,9 @@ from .utils import clean_metric_name, set_seed
 set_seed(42)
 
 def get_metrics(targets, y_pred, metrics=[f1_score, precision_score, recall_score, accuracy_score]) -> Dict[str, float|list]:
-    
+    """
+    Helper function to compute a set of metrics given the targets and predictions.
+    """
     result = {clean_metric_name(str(score)): float(score(targets, y_pred, average='macro')) for score in metrics if score != accuracy_score}
     result["accuracy"] = float(accuracy_score(targets, y_pred))
 
@@ -26,6 +28,9 @@ def get_metrics(targets, y_pred, metrics=[f1_score, precision_score, recall_scor
     
     return result
 
+#################
+# CL METRICS
+#################
 def compute_last(matrix):
     last = float(np.mean(matrix[-1]))
     return last
@@ -100,6 +105,9 @@ def compute_transfer(matrix):
     avg = float(total_sum / (num_tasks - 1) )
     return avg
 
+########################
+# Helper functions to compute the metrics more seamlessly
+########################
 def evaluate_cl_metrics(matrix, zero_shot_array):
     
     last = compute_last(matrix)

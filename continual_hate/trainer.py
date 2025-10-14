@@ -22,11 +22,23 @@ from .datastreams import DataStream
 set_seed(42)
 
 class Trainer():
-
+    """
+    Class for the main training, validation and testing.
+    Params:
+    - model: object of the AutoContinualLearner class defined in models.
+    - mode: helper to run the trainer in order to test that it does not break in SLURM. 
+            "test" will run only 1 batch per epoch and save some computations to check the script does not break.
+            any other string will run the full training.
+    - objective: "CAUSAL_LM" or "SEQ_CLS". Since I ended up using unsloth for the LoRAs, CAUSAL_LM was left unused.
+    - learning_rate: the learning rate for the training.
+    - optimizer: the optimizer to be used.
+    - distributed_config_object: an instance of the DistTrainingConfig class defined in utils - NOT TESTED!!!!
+    - early_stopper: object of the EarlyStopperAndCheckpointer class defined in utils.
+    """
     def __init__(self, 
                 model, 
-                mode, 
-                objective,
+                mode:str, 
+                objective:str,
                 learning_rate,
                 optimizer,
                 distributed_config_object:DistTrainingConfig,

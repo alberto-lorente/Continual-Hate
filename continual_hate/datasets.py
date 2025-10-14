@@ -21,7 +21,20 @@ from .utils import transform_original_label, set_seed, filter_few_shots_df, conv
 set_seed(42)
 
 class TaskDataset():
-
+    """
+    Class to pre-process and process the different datasets.
+    Params:
+    - df: the Pandas df containing the data.
+    - task: the task (or name of the dataset) to be filtered from the dataframe (so that we can have a massive df with all the datasets inside). 
+            If its a string, it will filter the df by that task. If its a list of strings, it will filter the df by all the tasks in the list and merge them into one dataset (expected behaviour for Merged FT Baselines).
+    - task_column: the name of the column containing the task (dataset) names.
+    - text_column: the name of the column containing the text data.
+    - label_column: the name of the column containing the label data.
+    - split_column: the name of the column containing the split data.
+    - label_equivalence_general: the dictionary to map the original labels to verbalizers.
+    - label_equivalence_int: the dictionary to map the original labels to bool ints.
+    - zero_shot: if True, only the test split will be processed.
+    """
     def __init__(self, 
                 df:pd.DataFrame, 
                 task:str|list[str], 

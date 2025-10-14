@@ -1,3 +1,7 @@
+#######################3
+# Some prompts, configs, translation dictionaries and hyperparameters to keep track
+#######################
+
 base_prompt = """You are a social media content moderator.
 INSTRUCTION: The following is a social media message that needs to be classified with the label HATEFUL or NOT HATEFUL.
 MESSAGE: {}

@@ -11,7 +11,9 @@ from .utils import set_seed
 set_seed(42)
 
 class ProcessingConfig():
-
+    """
+    Class to set the processing and tokenizing configuration for the TaskDataset class.
+    """
     def __init__(self, 
                 tokenizer_id:str, 
                 training_obj:str, 

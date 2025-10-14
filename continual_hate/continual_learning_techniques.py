@@ -15,7 +15,14 @@ from .utils import set_seed
 set_seed(42)
 
 class CLTechniques():
-
+    """
+    The class for the Continual Learning Techniques implemented: EWC, A-GEM, LwF and MAS.
+    Params:
+    - model: an object of the AutoContinualLearner class defined in models.
+    - device: the device to be used.
+    - technique: the technique to be used. Has to match ewc, agem, lwf or mas.
+    - hyperparams: The Hyperparams Dictionary should be {cl_technique: {hyperparam_name: hyperparam_value}}.
+    """
     def __init__(self, model, device, technique="none", hyperparams:dict=cl_hyperparameters):
         """
         Initializes the CL technique passed.

@@ -16,6 +16,9 @@ from .processing import ProcessingConfig
 set_seed(42)
 
 class AutoContinualLearner(nn.Module):
+    """
+    Class to wrap a huggingface model and apply the configuration for the required experiment.
+    """
     
     def __init__(self, 
                 model_id, 

@@ -10,6 +10,9 @@ from .utils import set_seed
 set_seed(42)
 
 class DataStream():
+    """
+    Class to handle the datastreams for continual learning experiments.
+    """
 
     def __init__(self, datastream:List[TaskDataset], 
                 experiment_name:str, 
